@@ -19,12 +19,12 @@
     var Puzzle = function () {
         function isValidPermutation(state) {
             var numOfTiles = Object.size(state);
-            var dim = Math.floor(Math.sqrt(numOfTiles));
+            var dim = Math.round(Math.sqrt(numOfTiles));
             var inversions = 0;
-            for(var i = 0; i < numOfTiles; i++) {
+            for(var i = 0; i < numOfTiles; ++i) {
                 var iTile = state[i];
                 if(iTile.item !== 0) {
-                    for (var j = i + 1; j < numOfTiles; j++) {
+                    for (var j = i + 1; j < numOfTiles; ++j) {
                         var jTile = state[j];
                         if(jTile.item !== 0 && jTile.item < iTile.item) {
                             inversions = inversions + 1;
@@ -32,8 +32,8 @@
                     }
                 } else {
                     /*jslint bitwise: true */
-                    if((dim & 0x1) ===0) {
-                        inversions = inversions + Math.floor(1 + i/ dim);
+                    if((dim & 0x1) === 0) {
+                        inversions = inversions + (1 + Math.floor(i / dim));
                     }
                 }
             }
@@ -59,34 +59,34 @@
         };
 
         this.getRandomArray = function() {
-            var tilesNumber = 15;
+            var numOfTiles = 16;
             var tiles = {};
-            for(var i = 0; i <= tilesNumber; i++) {
+            for(var i = numOfTiles - 2; i >= 0; --i) {
                 tiles[i] = {key: i, item: (i + 1)};
             }
-            tiles[tilesNumber].item = 0;
-            var maxTilesToSwap = tilesNumber;
-            for(i = 49; i >= 0; i --) {
-                var rand1 = Math.floor(Math.random() * (maxTilesToSwap + 1));
-                var rand2 = Math.floor(Math.random() * (maxTilesToSwap + 1));
+
+            tiles[numOfTiles - 1] = {key: 15, item: 0};
+
+            var maxTilesToSwap = numOfTiles;
+            for(i = 49; i >= 0; --i) {
+                var rand1 = Math.round(Math.random() * (maxTilesToSwap - 1));
+                var rand2 = Math.round(Math.random() * (maxTilesToSwap - 1));
                 if(rand1 === rand2) {
                     /*jslint bitwise: true */
                     if(rand1 < (maxTilesToSwap << 1)) {
-                        rand2 = Math.floor(Math.random() * (maxTilesToSwap + 1) - rand1) + rand1;
+                        rand2 = Math.round(Math.random() * ((maxTilesToSwap - 1) - rand1)) + rand1;
                     } else {
-                        rand2 = Math.floor(Math.random() * (rand1 + 1));
+                        rand2 = Math.round(Math.random() * (rand1 - 1));
                     }
                 }
                 swap(rand1, rand2, tiles);
             }
 
+            // parity check odd or even
             if(!isValidPermutation(tiles)) {
-                console.log(false);
                 if(tiles[0].item !== 0 && tiles[1].item !== 0) {
-                    console.log(1);
                     swap(0, 1, tiles);
                 } else {
-                    console.log(2);
                     swap(2, 3, tiles);
                 }
             }
