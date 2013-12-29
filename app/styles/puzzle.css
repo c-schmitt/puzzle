@@ -8,96 +8,96 @@ span.floater {
 span.pic0 {
     width: 32px;
     height: 32px;
-    background: url('http://welt7.freewar.de/freewar/internal/java/puzzle.gif') 0 0;
+    border: 1px solid black;
 }
 
 span.pic1 {
     width: 32px;
     height: 32px;
-    background: url('http://welt7.freewar.de/freewar/internal/java/puzzle.gif') -32px 0;
+    border: 1px solid black;
 }
 
 span.pic2 {
     width: 32px;
     height: 32px;
-    background: url('http://welt7.freewar.de/freewar/internal/java/puzzle.gif') -64px 0;
+    border: 1px solid black;
 }
 
 span.pic3 {
     width: 32px;
     height: 32px;
-    background: url('http://welt7.freewar.de/freewar/internal/java/puzzle.gif') -96px 0;
+    border: 1px solid black;
 }
 
 span.pic4 {
     width: 32px;
     height: 32px;
-    background: url('http://welt7.freewar.de/freewar/internal/java/puzzle.gif') 0 -32px;
+    border: 1px solid black;
 }
 
 span.pic5 {
     width: 32px;
     height: 32px;
-    background: url('http://welt7.freewar.de/freewar/internal/java/puzzle.gif') -32px -32px;
+    border: 1px solid black;
 }
 
 span.pic6 {
     width: 32px;
     height: 32px;
-    background: url('http://welt7.freewar.de/freewar/internal/java/puzzle.gif') -64px -32px;
+    border: 1px solid black;
 }
 
 span.pic7 {
     width: 32px;
     height: 32px;
-    background: url('http://welt7.freewar.de/freewar/internal/java/puzzle.gif') -96px -32px;
+    border: 1px solid black;
 }
 
 span.pic8 {
     width: 32px;
     height: 32px;
-    background: url('http://welt7.freewar.de/freewar/internal/java/puzzle.gif') 0 -64px;
+    border: 1px solid black;
 }
 
 span.pic9 {
     width: 32px;
     height: 32px;
-    background: url('http://welt7.freewar.de/freewar/internal/java/puzzle.gif') -32px -64px;
+    border: 1px solid black;
 }
 
 span.pic10 {
     width: 32px;
     height: 32px;
-    background: url('http://welt7.freewar.de/freewar/internal/java/puzzle.gif') -64px -64px;
+    border: 1px solid black;
 }
 
 span.pic11 {
     width: 32px;
     height: 32px;
-    background: url('http://welt7.freewar.de/freewar/internal/java/puzzle.gif') -96px -64px;
+    border: 1px solid black;
 }
 
 span.pic12 {
     width: 32px;
     height: 32px;
-    background: url('http://welt7.freewar.de/freewar/internal/java/puzzle.gif') 0 -96px;
+    border: 1px solid black;
 }
 
 span.pic13 {
     width: 32px;
     height: 32px;
-    background: url('http://welt7.freewar.de/freewar/internal/java/puzzle.gif') -32px -96px;
+    border: 1px solid black;
 }
 
 span.pic14 {
     width: 32px;
     height: 32px;
-    background: url('http://welt7.freewar.de/freewar/internal/java/puzzle.gif') -64px -96px;
+    border: 1px solid black;
 }
 
 span.pic15 {
     width: 32px;
     height: 32px;
     background: black !important; width: 32px; height: 32px;
-    /*background: url('http://welt7.freewar.de/freewar/internal/java/puzzle.gif') -96px -96px;*/
+    border: 1px solid black;
 }
