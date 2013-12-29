@@ -191,9 +191,9 @@
         if((tmp % 4 !== 0 && i + 1 === tmp) || (tmp + 1) % 4 !== 0 && i - 1 === tmp || i + 4 === tmp || i - 4 === tmp) {
             var attrTmp = event.currentTarget.getAttribute('class');
             var blackSpan = getById(tmp);
-            var itemTmp = event.currentTarget.innerHTML;
-            event.currentTarget.innerHTML = blackSpan.innerHTML;
-            blackSpan.innerHTML = itemTmp;
+            //var itemTmp = event.currentTarget.innerHTML;
+            //event.currentTarget.innerHTML = blackSpan.innerHTML;
+            //blackSpan.innerHTML = itemTmp;
             event.currentTarget.setAttribute('class', blackSpan.getAttribute('class'));
             blackSpan.setAttribute('class', attrTmp);
             swap(i, tmp);
@@ -215,7 +215,7 @@
             var spanName = 'pic' + cachePuzzle[i].item;
             newSpan.setAttribute('class', spanName + ' floater');
             newSpan.setAttribute('id', cachePuzzle[i].key);
-            newSpan.innerHTML = (cachePuzzle[i].item);
+            //newSpan.innerHTML = (cachePuzzle[i].item);
             newSpan.onclick = clicker;
             data.appendChild(newSpan);
             if(i === 3 || i === 7 || i === 11) {
