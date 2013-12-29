@@ -19,25 +19,24 @@
     var Puzzle = function () {
         function isValidPermutation(state) {
             var numOfTiles = Object.size(state);
-            var dim = Math.round(Math.sqrt(numOfTiles));
+            var dim = Math.floor(Math.sqrt(numOfTiles));
             var inversions = 0;
-            for(var i = 0; i < numOfTiles; ++i) {
-                var iTile = state[i];
-                if(iTile.item !== 0) {
-                    for (var j = i + 1; j < numOfTiles; ++j) {
-                        var jTile = state[j];
-                        if(jTile.item !== 0 && jTile.item < iTile.item) {
-                            inversions = inversions + 1;
+            for(var i = 0; i < numOfTiles; i++) {
+                var iTile = state[i].item;
+                if(iTile !== 0) {
+                    for(var j = i + 1; j < numOfTiles; j++) {
+                        var jTile = state[j].item;
+                        if(jTile !== 0 && jTile < iTile) {
+                            inversions++;
                         }
                     }
                 } else {
                     /*jslint bitwise: true */
                     if((dim & 0x1) === 0) {
-                        inversions = inversions + (1 + Math.floor(i / dim));
+                        inversions += (1 + Math.floor(i / dim));
                     }
                 }
             }
-            /*jslint bitwise: true */
             if((inversions & 0x1) === 1) {
                 return false;
             }
@@ -61,28 +60,24 @@
         this.getRandomArray = function() {
             var numOfTiles = 16;
             var tiles = {};
-            for(var i = numOfTiles - 2; i >= 0; --i) {
-                tiles[i] = {key: i, item: (i + 1)};
+            for(var i = numOfTiles - 2; i >= 0; i--) {
+                tiles[i] = {key: i, item: i + 1};
             }
-
-            tiles[numOfTiles - 1] = {key: 15, item: 0};
-
+            tiles[numOfTiles - 1] = {key: numOfTiles - 1, item: 0};
             var maxTilesToSwap = numOfTiles;
-            for(i = 49; i >= 0; --i) {
-                var rand1 = Math.round(Math.random() * (maxTilesToSwap - 1));
-                var rand2 = Math.round(Math.random() * (maxTilesToSwap - 1));
+            for(i = 49; i >= 0; i--) {
+                var rand1 = Math.floor(Math.random() * maxTilesToSwap);
+                var rand2 = Math.floor(Math.random() * maxTilesToSwap);
                 if(rand1 === rand2) {
                     /*jslint bitwise: true */
                     if(rand1 < (maxTilesToSwap << 1)) {
-                        rand2 = Math.round(Math.random() * ((maxTilesToSwap - 1) - rand1)) + rand1;
+                        rand2 = Math.floor(Math.random() * (maxTilesToSwap - rand1)) + rand1;
                     } else {
-                        rand2 = Math.round(Math.random() * (rand1 - 1));
+                        rand2 = Math.floor(Math.random() * rand1);
                     }
                 }
                 swap(rand1, rand2, tiles);
             }
-
-            // parity check odd or even
             if(!isValidPermutation(tiles)) {
                 if(tiles[0].item !== 0 && tiles[1].item !== 0) {
                     swap(0, 1, tiles);
@@ -178,7 +173,6 @@
     function validate() {
         for(var i = 0; i < Object.size(cachePuzzle); i++) {
             if(cachePuzzle[i].item !== cachePuzzle[i].key) {
-                console.log(cachePuzzle[i]);
                 return false;
             }
         }
@@ -209,7 +203,6 @@
                 var itemid = parseInt(getById('itemid').value);
                 var hash = itemid % 137;
                 window.location.href = Base64.decode(url) + hash + Base64.decode(and) + jumpto;
-                console.log(window.location.href);
             }
         }
     }
@@ -222,7 +215,7 @@
             var spanName = 'pic' + cachePuzzle[i].item;
             newSpan.setAttribute('class', spanName + ' floater');
             newSpan.setAttribute('id', cachePuzzle[i].key);
-            newSpan.innerHTML = (cachePuzzle[i].item + 1);
+            newSpan.innerHTML = (cachePuzzle[i].item);
             newSpan.onclick = clicker;
             data.appendChild(newSpan);
             if(i === 3 || i === 7 || i === 11) {
@@ -245,9 +238,6 @@
         cacheKey = {'key': tmp.key, 'item': tmp.item};
         cacheDiv = getById('puzzle');
         repaint();
-        console.log(cachePuzzle);
-        console.log(cacheKey);
-        console.log(getById('jumpto').value);
     }
 
     init();
