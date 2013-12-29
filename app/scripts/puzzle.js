@@ -171,8 +171,8 @@
     };
 
     function validate() {
-        for(var i = 0; i < Object.size(cachePuzzle); i++) {
-            if(cachePuzzle[i].item !== cachePuzzle[i].key) {
+        for(var i = 0; i < Object.size(cachePuzzle) - 1; i++) {
+            if(cachePuzzle[i].item - 1  !== cachePuzzle[i].key) {
                 return false;
             }
         }
@@ -234,7 +234,7 @@
     function init() {
         var puzzle = new Puzzle();
         cachePuzzle = puzzle.getRandomArray();
-        var tmp = puzzle.getKey(cachePuzzle, 15);
+        var tmp = puzzle.getKey(cachePuzzle, 0);
         cacheKey = {'key': tmp.key, 'item': tmp.item};
         cacheDiv = getById('puzzle');
         repaint();
